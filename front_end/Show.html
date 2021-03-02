@@ -1,5 +1,5 @@
-<!DOCTYPE html>   
-<html>  
+<!DOCTYPE html> 
+<html>   
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -7,6 +7,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 
 <body>
@@ -46,49 +49,58 @@
   <div>
     <div class="categories">
       <ul class="container categories-list">
-        <li><a>Cleaning</a></li>
+        <li><a>Home</a></li>
         <li><a>Garden</a></li>
         <li><a>Removal</a></li>
         <li><a>Gadgets</a></li>
       </ul>
     </div>
   </div>
-  <div class="banner">
-    <div class="input-group mb-3 container input-group-lg search-input">
-      <input type="text" class="form-control" placeholder="I'm looking for..." aria-label="Recipient's username" aria-describedby="basic-addon2">
-      <div class="input-group-append">
-        <button class="input-group-text"  id="inputGroup-sizing-lg">Search</button>
-      </div>
+  <!--- search bar -->
+  <div class="input-group mb-3 container input-group-lg search-input">
+    <input type="text" class="form-control" placeholder="I'm looking for..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <button class="input-group-text"  id="inputGroup-sizing-lg">Search</button>
+    </div>
+  </div>
+<!--- page hirarchy -->
+  <nav aria-label="breadcrumb" class="container">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Cleaning</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Ad ID 4356</li>
+    </ol>
+  </nav>
+  
+    <div class="container show-item-div">
+        <div class="left-column">
+        <img src="trailer.png">
+        <h3>Title</h3>
+        <div class="price">
+            <span style="color: chocolate;" >$price</span>
+            <span>per day</span>
+        </div>
+        <div>
+            description
+        </div>
+        </div>
+        <div class="right-column">
+          <h3>seller's name</h3>  
+          <form class="booking-form">
+            <label>Online Booking</label>
+            <input class="datepicker" id="depart" type="hidden" style="display: none"/>
+            <button class="btn btn-block">Go To checkout</button>
+          </form>
+        </div>
     </div>
     
-  </div>
-  <h3 class="center-element">Homepage Gallery</h2>
-    <div class="card-deck ">
-      <div class="card">
-        <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-      </div>
-      <div class="card">
-        <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-      </div>
-      <div class="card">
-        <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-      </div>
-    </div>
-  <a href="#" class="center-element">See More..</a>
+    <script>
+        flatpickr(".datepicker",
+        {
+          inline: true,
+          mode: 'range'
+        });
+  
+      </script>
   </body>
   </html>

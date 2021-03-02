@@ -53,42 +53,44 @@
       </ul>
     </div>
   </div>
-  <div class="banner">
-    <div class="input-group mb-3 container input-group-lg search-input">
-      <input type="text" class="form-control" placeholder="I'm looking for..." aria-label="Recipient's username" aria-describedby="basic-addon2">
-      <div class="input-group-append">
-        <button class="input-group-text"  id="inputGroup-sizing-lg">Search</button>
-      </div>
-    </div>
-    
+   
+  <div class="container form-container">
+    <form>
+        <h3>Add an Item For Hire</h3>
+        
+        <div class="form-group">
+          <strong><label for="inputTitle">Title</label></strong>
+          <input type="text" class="form-control" id="inputTitle" placeholder="">
+        </div>
+        <div class="form-group">
+            <strong> <label>Attatch image</label></strong>
+            <div class="custom-file">            
+                <input type="file" class="custom-file-input" id="customFile" accept="image/*">
+                <label class="custom-file-label" for="customFile">Choose image</label>
+              </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <strong><label for="price">Price per day</label></strong>
+            <input type="text" class="form-control" id="price" placeholder="$">
+          </div>
+          <div class="form-group col-md-6">
+        <strong><label for="categories">Category</label></strong>
+            <select id="categories" class="form-control">
+              <option selected>Choose...</option>
+              <option>...</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+        <strong><label for="inputDescription">Description</label></strong>
+            <textarea  class="form-control" rows="5" id="inputDescription" name="inputDescription" placeholder=""></textarea>
+          </div>
+        <button type="submit" class="btn btn-primary">Create Listing</button>
+      </form>
   </div>
-  <h3 class="center-element">Homepage Gallery</h2>
-    <div class="card-deck ">
-      <div class="card">
-        <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-      </div>
-      <div class="card">
-        <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-      </div>
-      <div class="card">
-        <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-      </div>
-    </div>
-  <a href="#" class="center-element">See More..</a>
+    
+  
   </body>
   </html>

@@ -1,3 +1,8 @@
+body {
+    background-color: #f4f4f4;;
+}
+
+
 .categories {
     background-color: #6c757d;
 }
@@ -36,7 +41,7 @@
 }
 
 .breadcrumb {
-    background-color: #fff;
+    background-color: #f4f4f4;;
 }
 
 .card-deck {
@@ -49,6 +54,72 @@
   
 }
 
+.show-item-div{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+}
+
+.show-item-div>div{
+    margin:15px 0px; 
+} 
+
+.left-column {
+    width:100%;
+    background-color: #fff;
+    height: 700px;
+    padding:5%;
+    
+}
+.left-column img{
+    max-width: 100%;
+    max-height: 50%;
+    display:block;
+    margin:0 auto;
+}
+
+.left-column>h3{
+    border-bottom: 1px solid #dedcdc;}
+ .right-column {
+     
+    background-color: #fff;
+    /* height: 300px; */
+     padding:1.5%; 
+} 
+.right-column>h3{
+    border-bottom: 1px solid #dedcdc;}
+.booking-form {
+    text-align:center;
+}    
+.booking-form>label{
+        font-size: 1.2rem;}    
+.flatpickr-calendar.inline {
+        max-width: 100%;}
+
+.btn {
+    background-color: chocolate;
+    color: white;
+    max-width: 100%;
+    margin-top:20px;
+    
+}
+.form-container {
+    margin-top: 30px;
+}        
+.form-container>form{
+    background-color: #fff;
+    padding:5% 10%;
+}
+.form-container h3 {
+color:chocolate;
+}
+@media (min-width: 1024px)
+{ .left-column {
+    width:67%;}
+   .right-column {
+        width:31%;} 
+
+}
 @media (min-width: 576px)
 {
     .card-deck {
