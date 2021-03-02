@@ -35,8 +35,28 @@
 
 }
 
-@media (min-width: 576px) 
-{.card-deck {
-         margin-right: 0px; 
-    margin-left: 0px;}
+.breadcrumb {
+    background-color: #fff;
+}
+
+.card-deck {
+    margin: 0 15px;
+    max-width:1140px;
+  
+}
+.card{
+    min-width: 273px;
+  
+}
+
+@media (min-width: 576px)
+{
+    .card-deck {
+   margin: 0 auto;
+   
+  }
+.card {
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
 }
