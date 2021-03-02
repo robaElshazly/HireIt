@@ -1,0 +1,42 @@
+.categories {
+    background-color: #6c757d;
+}
+.categories-list {
+    padding:0;
+    margin-bottom: 0px;
+    color:#fff;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.categories-list li{
+    padding: 0.5em;
+}
+
+.banner {
+    height: 310px;
+    background-image: url("./banner.jpg");
+    
+}
+
+.search-input {
+  padding-top: 15px;
+} 
+.center-element {
+    display:block;
+    text-align:center; 
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.items-gallery{
+    display:flex;
+    justify-content: space-around;
+
+}
+
+@media (min-width: 576px) 
+{.card-deck {
+         margin-right: 0px; 
+    margin-left: 0px;}
+}
