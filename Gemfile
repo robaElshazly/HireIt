@@ -30,7 +30,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # custom gems
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.5.2'
-gem 'simple_form'
+
 gem 'devise'
 
 group :development, :test do

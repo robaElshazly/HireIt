@@ -10,6 +10,9 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<link rel="stylesheet" href="../app/assets/stylesheets/font-awesome.min.css">
+
+
 </head>
 
 <body>
@@ -80,8 +83,10 @@
             <span style="color: chocolate;" >$price</span>
             <span>per day</span>
         </div>
-        <div>
-            description
+        <div class="description">
+           <strong> <p>Details</p></strong>
+           <p>description</p> 
+           <i class="fas fa-map-marker-alt" ></i><p><small class="text-muted">Location</small></p>
         </div>
         </div>
         <div class="right-column">
@@ -89,7 +94,7 @@
           <form class="booking-form">
             <label>Online Booking</label>
             <input class="datepicker" id="depart" type="hidden" style="display: none"/>
-            <button class="btn btn-block">Go To checkout</button>
+            <button class="btn btn-block">Make a Booking </button>
           </form>
         </div>
     </div>
