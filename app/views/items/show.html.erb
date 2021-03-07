@@ -1,6 +1,39 @@
+<%=render "partials/categories-list"%>
 <p id="notice"><%= notice %></p>
-
-<p>
+<%=render "partials/search"%>
+ <div class="container show-item-div">
+        <div class="left-column">
+        <img src="trailer.png">
+        <h3><%=@item.name%></h3>
+        <div class="price">
+            <span style="color: chocolate;" ><%=@item.price%></span>
+            <span>per day</span>
+        </div>
+        <div class="description">
+           <strong> <p>Details</p></strong>
+           <p><%=@item.description%></p> 
+           <i class="fas fa-map-marker-alt" ></i><p><small class="text-muted">Location</small></p>
+        </div>
+        </div>
+        <div class="right-column">
+          <h3><%=@item.user.name%></h3>  
+          <form class="booking-form">
+            <label>Online Booking</label>
+            <input class="datepicker" id="depart" type="hidden" style="display: none"/>
+            <button class="btn btn-block">Make a Booking </button>
+          </form>
+        </div>
+    </div>
+    
+    <script>
+        flatpickr(".datepicker",
+        {
+          inline: true,
+          mode: 'range'
+        });
+  
+      </script>
+<!--<p>
   <strong>Name:</strong>
   <%= @item.name %>
 </p>
@@ -19,6 +52,6 @@
   <strong>User:</strong>
   <%= @item.user_id %>
 </p>
-
+-->
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>

@@ -22,7 +22,8 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown_item">My Listings</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown_item">Add Listing</a>
+                            <%= link_to "Add Listing", new_item_path, class:"dropdown_item"%>
+                            <!--<a class="dropdown_item">Add Listing</a>-->
                             <div class="dropdown-divider"></div>
                             <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class:"dropdown_item"%>
                     </div>   

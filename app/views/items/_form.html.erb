@@ -1,4 +1,5 @@
-<%= form_with(model: item) do |form| %>
+<%= form_with(model: item) do |form|  %>
+ 
   <% if item.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
@@ -11,27 +12,31 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="field form-group">
+    <strong><%= form.label :name %></strong>
+    <%= form.text_field :name , class: "form-control" %>
   </div>
-
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
+ <div class="form-row">
+  <div class="field form-group col-md-6">
+    <strong><%= form.label :price %></strong>
+    <%= form.text_field :price , class: "form-control" %>
+  
   </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="form-group col-md-6">
+    <strong><%= form.label :category_id %></strong>
+    <%=form.select :category_id , categories.map {|cat| [cat.name, cat.id]},{},{ :class=> "form-control"} %>
   </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+ </div>
+  <div class="field form-group">
+    <strong><%= form.label :description %><strong>
+    <%= form.text_area :description , class: "form-control", rows: "5" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit  class: "btn btn-primary" %>
   </div>
 <% end %>
+
+
+
+    

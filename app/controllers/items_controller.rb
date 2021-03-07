@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show edit update destroy ]
-
+  before_action :set_categories, only: [:new, :edit]
   # GET /items or /items.json
   def index
     @items = Item.all
@@ -65,5 +65,9 @@ class ItemsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def item_params
       params.require(:item).permit(:name, :price, :description, :user_id)
+    end
+
+    def set_categories
+      @categories=Category.all
     end
 end
