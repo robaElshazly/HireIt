@@ -1,1 +1,25 @@
-<h1> Home/page </h1>
+<%=render "partials/categories-list"%>
+<div class="banner">
+    <%=render "partials/search"%> 
+  </div>
+<h3 class="center-element">Homepage Gallery</h3>
+ <div class="card-deck">
+ <%@items.each do |item| %>
+
+ 
+ <div class="card">
+        <%if item.picture.attached?%>
+        <%=image_tag item.picture ,class: "card-img-top", alt: "Card image cap"%>
+        <%end%>
+        <div class="card-body">
+          <a href="<%=item_path(item.id)%>">
+          <h5 class="card-title"><%=item.name%></h5>
+          </a>
+          <p class="card-text hide-overflow"><%=item.description%></p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+    
+ <%end%>
+ </div>
+ <%= link_to "See More...", items_path, class: "center-element"%> 

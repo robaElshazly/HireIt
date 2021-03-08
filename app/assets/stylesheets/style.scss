@@ -21,7 +21,7 @@ body {
 
 .banner {
     height: 310px;
-    background-image: url("./banner.jpg");
+    background-image: url("banner.jpg");
     
 }
 
@@ -52,6 +52,10 @@ body {
 .card{
     min-width: 273px;
   
+}
+.hide-overflow {
+    overflow: hidden;
+  text-overflow: ellipsis; 
 }
 
 .show-item-div{
