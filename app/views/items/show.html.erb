@@ -3,7 +3,7 @@
 <%=render "partials/search"%>
  <div class="container show-item-div">
         <div class="left-column">
-        <img src="trailer.png">
+        <%=image_tag @item.picture if @item.picture.attached?%>
         <h3><%=@item.name%></h3>
         <div class="price">
             <span style="color: chocolate;" ><%=@item.price%></span>

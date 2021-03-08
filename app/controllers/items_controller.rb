@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show edit update destroy ]
   before_action :set_categories, only: [:new, :edit]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   # GET /items or /items.json
   def index
     @items = Item.all
@@ -21,7 +22,7 @@ class ItemsController < ApplicationController
 
   # POST /items or /items.json
   def create
-    @item = Item.new(item_params)
+    @item = Item.new(item_params.merge(user: current_user))
 
     if @item.save
       flash[:success] = "Item Created"
@@ -75,7 +76,7 @@ class ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:name, :price, :description, :user_id)
+      params.require(:item).permit(:name, :price, :description, :category_id, :picture)
     end
 
     def set_categories

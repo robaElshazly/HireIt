@@ -13,15 +13,21 @@
   <% end %>
 
   <div class="field form-group">
-    <strong><%= form.label :name %></strong>
+    <strong><%= form.label :name , 'Title'%></strong>
     <%= form.text_field :name , class: "form-control" %>
   </div>
+
+  <div class="field form-group">
+    <strong><%= form.label :picture ,'Attatch image' %></strong>   
+    <%= form.file_field :picture , class: "form-control" %>  
+  </div>
+
  <div class="form-row">
   <div class="field form-group col-md-6">
-    <strong><%= form.label :price %></strong>
-    <%= form.text_field :price , class: "form-control" %>
-  
+    <strong><%= form.label :price , 'Price per day' %></strong>    
+    <%= form.text_field :price , class: "form-control", accept: "image/*" %>  
   </div>
+
   <div class="form-group col-md-6">
     <strong><%= form.label :category_id %></strong>
     <%=form.select :category_id , categories.map {|cat| [cat.name, cat.id]},{},{ :class=> "form-control"} %>
