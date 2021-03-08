@@ -1,6 +1,8 @@
+<%=render "partials/categories-list"%>
+<%=render "partials/search"%> 
 <p id="notice"><%= notice %></p>
 
-<h1>Items</h1>
+ <!--<h1>Items</h1>
 
 <table>
   <thead>
@@ -30,4 +32,12 @@
 
 <br>
 
-<%= link_to 'New Item', new_item_path %>
+<%= link_to 'New Item', new_item_path %> -->
+
+<div class="card-deck">
+ <%@items.order(updated_at: :desc).each do |item| %>
+
+ 
+ <%=render "partials/item-card" , item: item%>
+    
+ <%end%>

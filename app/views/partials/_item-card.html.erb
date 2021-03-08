@@ -1,6 +1,6 @@
 <div class="card">
         <%if item.picture.attached?%>
-        <%=image_tag item.picture ,class: "card-img-top", alt: "Card image cap"%>
+        <%=image_tag item.picture ,class: "card-img-top img-thumbnail", alt: "Card image cap"%>
         <%end%>
         <div class="card-body">
           <a href="<%=item_path(item.id)%>">
