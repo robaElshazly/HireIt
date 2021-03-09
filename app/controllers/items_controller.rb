@@ -4,10 +4,11 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   # GET /items or /items.json
   def index
+    
     if !params[:category_id].blank?
-      @items= Item.where(category_id: params[:category_id])
+      @pagy,@items= pagy(Item.where(category_id: params[:category_id]).recent_first)
     else  
-      @items = Item.search(params[:search])
+      @pagy,@items = pagy(Item.search(params[:search]))
     end  
   end
 
