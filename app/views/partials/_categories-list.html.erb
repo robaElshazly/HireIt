@@ -1,8 +1,10 @@
 <div class="categories">
       <ul class="container categories-list">
-        <li><a>Cleaning</a></li>
-        <li><a>Garden</a></li>
-        <li><a>Removal</a></li>
-        <li><a>Gadgets</a></li>
+        <%@categories.each do |category|%>
+          <li>
+            <%=link_to "#{category.name}".capitalize, items_path(category_id: category.id )%>
+          </li>
+        <%end%>
       </ul>
-    </div>
+ </div>
+  

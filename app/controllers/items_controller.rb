@@ -1,10 +1,14 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show edit update destroy ]
-  before_action :set_categories, only: [:new, :edit]
+  before_action :set_categories
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   # GET /items or /items.json
   def index
-    @items = Item.search(params[:search])
+    if !params[:category_id].blank?
+      @items= Item.where(category_id: params[:category_id])
+    else  
+      @items = Item.search(params[:search])
+    end  
   end
 
   # GET /items/1 or /items/1.json
@@ -79,7 +83,7 @@ class ItemsController < ApplicationController
       params.require(:item).permit(:name, :price, :description, :category_id, :picture)
     end
 
-    def set_categories
-      @categories=Category.all
-    end
+    # def set_categories
+    #   @categories=Category.all
+    # end
 end
