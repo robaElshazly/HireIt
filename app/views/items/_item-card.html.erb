@@ -6,6 +6,10 @@
           <a href="<%=item_path(item.id)%>">
           <h5 class="card-title"><%=item.name%></h5>
           </a>
+          <div class="price">
+            <span style="color: chocolate;" ><%=@item.price%></span>
+            <span>per day</span>
+        </div>
           <p class="card-text hide-overflow"><%=item.description%></p>
           <%if item.user.address%>
             <p class="card-text"><small class="text-muted"><%=item.user.address.suburb%>,<%=item.user.address.state%></small></p>       

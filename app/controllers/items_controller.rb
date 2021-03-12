@@ -14,6 +14,11 @@ class ItemsController < ApplicationController
 
   # GET /items/1 or /items/1.json
   def show
+    if !@item
+      respond_to do |format|
+        format.html { redirect_to root_path, alert: "resource not found"}
+       end
+    end   
   end
 
   # GET /items/new
@@ -28,7 +33,6 @@ class ItemsController < ApplicationController
     else
       respond_to do |format|
        format.html { redirect_to items_url, alert: "Unauthorized acces"}
-    
       end
     end 
   end
@@ -39,7 +43,7 @@ class ItemsController < ApplicationController
 
     if @item.save
       flash[:notice] = "Item Created"
-      redirect_to items_path
+      redirect_to my_items_path
   else
       flash.now[:alert] = @item.errors.full_messages.to_sentence
       set_categories
@@ -95,7 +99,7 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = Item.find(params[:id])
+      @item = Item.find_by(id: params[:id])
     end
 
     # Only allow a list of trusted parameters through.
