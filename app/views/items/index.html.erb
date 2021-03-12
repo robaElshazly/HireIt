@@ -2,7 +2,7 @@
 <%=render "partials/search"%> 
 <div class="container main-content">
 <div class="card-deck">
- <%@items.each do |item| %>
+ <%@items.order('id desc').each do |item| %>
    <%=render "item-card" , item: item%>   
   <%end%>
 </div>

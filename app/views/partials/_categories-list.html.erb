@@ -1,5 +1,7 @@
 <div class="categories">
       <ul class="container categories-list">
+        <li><%=link_to "All items", items_path%>
+        </li>
         <%@categories.each do |category|%>
           <li>
             <%=link_to "#{category.name}".capitalize, items_path(category_id: category.id )%>

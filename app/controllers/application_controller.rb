@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include Pagy::Backend      
   before_action :configure_permitted_parameters, if: :devise_controller?
-        before_action :set_categories
+  before_action :set_categories
         protected
       
         def configure_permitted_parameters
