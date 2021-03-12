@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show edit update destroy ]
   before_action :set_categories
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:show, :index]
   # GET /items or /items.json
   def index
     
@@ -23,6 +23,14 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
+    if Item.find_by(id: params[:id],user_id: current_user.id)   #authorizing editing only for owners
+      
+    else
+      respond_to do |format|
+       format.html { redirect_to items_url, alert: "Unauthorized acces"}
+    
+      end
+    end 
   end
 
   # POST /items or /items.json
@@ -30,10 +38,10 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params.merge(user: current_user))
 
     if @item.save
-      flash[:success] = "Item Created"
+      flash[:notice] = "Item Created"
       redirect_to items_path
   else
-      flash.now[:error] = @item.errors.full_messages.to_sentence
+      flash.now[:alert] = @item.errors.full_messages.to_sentence
       set_categories
       render "new"
   end
@@ -54,23 +62,34 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1 or /items/1.json
   def update
     respond_to do |format|
-      if @item.update(item_params)
-        format.html { redirect_to @item, notice: "Item was successfully updated." }
-        format.json { render :show, status: :ok, location: @item }
-      else
+      if Item.find_by(id: params[:id],user_id: current_user.id)   #authorizing editing only for owners
+        if @item.update(item_params)
+          format.html { redirect_to @item, notice: "Item was successfully updated." }
+          format.json { render :show, status: :ok, location: @item }
+        else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @item.errors, status: :unprocessable_entity }
+        end
+      else
+        respond_to do |format|
+          format.html { redirect_to items_url, alert: "Unauthorized acces"}
+        end
       end
     end
   end
 
   # DELETE /items/1 or /items/1.json
   def destroy
-    @item.destroy
-    respond_to do |format|
-      format.html { redirect_to items_url, notice: "Item was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    if Item.find_by(id: params[:id],user_id: current_user.id)  #authorizing deleting only for owners
+       @item.destroy
+       respond_to do |format|
+        format.html { redirect_to items_url, notice: "Item was successfully destroyed."}
+      end
+    else  
+      respond_to do |format|
+        format.html { redirect_to items_url, alert: "Unauthorized acces"}
+      end  
+    end   
   end
 
   private

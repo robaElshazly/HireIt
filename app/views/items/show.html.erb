@@ -1,12 +1,15 @@
 <%=render "partials/categories-list"%>
-<p id="notice"><%= notice %></p>
 <%=render "partials/search"%>
- <%if @item.user.id==current_user.id%>
- <%= link_to 'Edit', edit_item_path(@item) %> |
- <%=link_to "Delete", item_path(@item), method: :delete, data: { confirm: "Are you sure?"}%>
-<%end%>
- <div class="container show-item-div">
-        <div class="left-column">
+ 
+ <div class="container">
+  <%if user_signed_in?%>  
+    <%if user_signed_in? && @item.user.id==current_user.id%>
+     <%= link_to 'Edit', edit_item_path(@item) %> |
+     <%=link_to "Delete", item_path(@item), method: :delete, data: { confirm: "Are you sure?"}%>
+   <%end%>
+  <%end%> 
+  <div class="show-item-div">
+      <div class="left-column">
         <%=image_tag @item.picture if @item.picture.attached?%>
         <h3><%=@item.name%></h3>
         <div class="price">
@@ -16,26 +19,30 @@
         <div class="description">
            <strong> <p>Details</p></strong>
            <p><%=@item.description%></p> 
-           <i class="fas fa-map-marker-alt" ></i><p><small class="text-muted">Location</small></p>
+           <%if @item.user.address%>
+            <p class="card-text"><small class="text-muted"><%=@item.user.address.suburb%>,<%=@item.user.address.state%></small></p>       
+          <%end%>
         </div>
-        </div>
+      </div>
         <div class="right-column">
           <h3><%=@item.user.name%></h3>  
           <form class="booking-form">
+          
             <label>Online Booking</label>
             <input class="datepicker" id="depart" type="hidden" style="display: none"/>
             <button class="btn btn-block">Make a Booking </button>
           </form>
         </div>
     </div>
+  </div>
     
     <script>
-        flatpickr(".datepicker",
+       flatpickr(".datepicker",
         {
           inline: true,
           mode: 'range'
         });
-  
+   
       </script>
 <!--<p>
   <strong>Name:</strong>

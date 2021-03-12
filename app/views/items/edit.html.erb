@@ -1,7 +1,7 @@
 <div class= "container main-content">
 <h3>Edit Your Item For Hire</h3>
 
-<%= render 'form', item: @item %>
+<%= render 'form', item: @item, categories: @categories %>
 
 <%= link_to 'Show', @item %> |
 <%= link_to 'Back', items_path %>

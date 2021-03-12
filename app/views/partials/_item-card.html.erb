@@ -1,12 +1,14 @@
 <div class="card">
         <%if item.picture.attached?%>
-        <%=image_tag item.picture ,class: "card-img-top img-thumbnail", alt: "Card image cap"%>
+        <%=image_tag item.picture ,class: "card-img-top ", alt: "Card image cap"%>
         <%end%>
         <div class="card-body">
           <a href="<%=item_path(item.id)%>">
           <h5 class="card-title"><%=item.name%></h5>
           </a>
           <p class="card-text hide-overflow"><%=item.description%></p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          <%if item.user.address%>
+            <p class="card-text"><small class="text-muted"><%=item.user.address.suburb%>,<%=item.user.address.state%></small></p>       
+          <%end%>
         </div>
     </div>
