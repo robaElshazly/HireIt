@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'bookings/new'
   resources :categories
   resources :items
   devise_for :users, controllers: { registrations: 'users/registrations' }

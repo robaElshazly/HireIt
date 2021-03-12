@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   belongs_to :user
   belongs_to :category
   has_one_attached :picture
+  has_many :bookings
   validates_presence_of :name, :price 
   before_save :remove_whitespace 
   scope :recent_first, -> {order(created_at: :desc)}
