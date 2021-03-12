@@ -23,11 +23,11 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    if current_user.address
+    if current_user.address.not_empty?
        @item = Item.new
     else
        respond_to do |format|
-        format.html { redirect_to edit_user_registration_path, alert: "Complete address details before listing an item"}
+        format.html { redirect_to edit_user_registration_path, alert: "Please , complete all address details before listing an item"}
        end
     end  
   end
