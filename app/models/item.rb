@@ -14,7 +14,6 @@ class Item < ApplicationRecord
 
   def remove_whitespace
     self.name=self.name.strip
-    self.price=self.price.strip
     self.description=self.description.strip
   end  
 end
