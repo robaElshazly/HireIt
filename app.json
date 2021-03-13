@@ -1,0 +1,14 @@
+{
+  "name": "Hire It",
+  "description": "Hire your stuff here",
+  "keywords": [
+    "HireIt",
+    "App"
+  ],
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "scripts": {
+    "postdeploy": "rails db:migrate"
+  }
+}
