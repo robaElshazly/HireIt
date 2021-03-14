@@ -18,7 +18,9 @@ class ItemsController < ApplicationController
       respond_to do |format|
         format.html { redirect_to root_path, alert: "resource not found"}
        end
-    end   
+    end  
+    p "unavailable date are:"
+    p @item.unavailable_dates
   end
 
   # GET /items/new
