@@ -1,11 +1,15 @@
 <div class="container main-content checkout">
-      <img src="trailer.png">
+  <% if @item.picture.attached? %>
+		<%= image_tag @item.picture %>
+	<% end %>
       <div>
-        <p><strong>Item: </strong><%=@item.title%></p>
+        <p><strong>Item: </strong><%=@item.name%></p>
         <p><strong>Pick up date: </strong><%=params[:start_date]%></p>
         <p><strong>Return date: </strong><%=params[:end_date]%></p>
-        <p><strong>Pick up from: </strong><%=@item.title%></p>
-        <p><strong>Total price: </strong><%=@item.price*(params[:start_date]-params[:end_date]+1)%></p>
+        <p><strong>Pick up from: </strong><%=@item.name%></p>
+        <p><strong>Period: </strong><%=params[:end_date].to_i-params[:start_date].to_i+1%> days</p>
+         <p><strong>Price per day: </strong>$<%=@item.price%></p>
+        <p><strong>Total price: </strong>$<%=@item.price*(params[:end_date].to_i-params[:start_date].to_i+1)%></p>
         <button type="submit" class="btn btn-primary">Go to checkout</button>
       </div>
   </div>
