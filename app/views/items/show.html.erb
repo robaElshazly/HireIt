@@ -1,49 +1,64 @@
 <%=render "partials/categories-list"%>
 <%=render "partials/search"%>
- 
- <div class="container">
-  <%if user_signed_in?%>  
+<div class="container">
+  <%if user_signed_in?%>
     <%if user_signed_in? && @item.user.id==current_user.id%>
-     <%= link_to 'Edit', edit_item_path(@item) %> |
-     <%=link_to "Delete", item_path(@item), method: :delete, data: { confirm: "Are you sure?"}%>
-   <%end%>
-  <%end%> 
+      <%= link_to 'Edit', edit_item_path(@item) %> |
+      <%=link_to "Delete", item_path(@item), method: :delete, data: { confirm: "Are you sure?"}%>
+    <%end%>
+  <%end%>
   <div class="show-item-div">
-      <div class="left-column">
-        <%=image_tag @item.picture if @item.picture.attached?%>
-        <h3><%=@item.name%></h3>
-        <div class="price">
-            <span style="color: chocolate;" ><%=@item.price%></span>
-            <span>per day</span>
-        </div>
-        <div class="description">
-           <strong> <p>Details</p></strong>
-           <p><%=@item.description%></p> 
-           <%if @item.user.address%>
-            <p class="card-text"><small class="text-muted"><%=@item.user.address.suburb%>,<%=@item.user.address.state%></small></p>       
-          <%end%>
-        </div>
+    <div class="left-column">
+      <%=image_tag @item.picture if @item.picture.attached?%>
+      <h3><%=@item.name%></h3>
+      <div class="price">
+        <span style="color: chocolate;" ><%=@item.price%></span>
+        <span>per day</span>
       </div>
-        <div class="right-column">
-          <h3><%=@item.user.name%></h3>  
-          <form class="booking-form">
-          
-            <label>Online Booking</label>
-            <input class="datepicker" id="depart" type="hidden" style="display: none"/>
-            <button class="btn btn-block">Make a Booking </button>
-          </form>
-        </div>
+      <div class="description">
+        <strong>
+          <p>Details</p>
+        </strong>
+        <p><%=@item.description%></p>
+        <%if @item.user.address%>
+          <p class="card-text"><small class="text-muted"><%=@item.user.address.suburb%>,<%=@item.user.address.state%></small></p>
+        <%end%>
+      </div>
+    </div>
+    <div class="right-column">
+      <h3><%=@item.user.name%></h3>
+      <%=form_with url: new_booking_path, method: :get, local: true do |form|%>
+        <%= form.hidden_field :start_date %>
+        <%= form.hidden_field :end_date %>
+        <%= form.hidden_field :item_id , {value: @item.id}%>
+        <label>Online Booking</label>
+        <input class="datepicker" id="depart" type="hidden" style="display: none"  />
+        <button class="btn btn-block">Make a Booking </button>
+      <%end%>
     </div>
   </div>
-    
-    <script>
-       flatpickr(".datepicker",
-        {
-          inline: true,
-          mode: 'range'
-        });
+</div>
+<script>
+  flatpickr(".datepicker",
+   {
+     inline: true,
+     mode: 'range',
+     onChange: function(selectedDates, dateStr, instance) {
+  
+     if(selectedDates){
+      if(selectedDates[0]){
+        document.getElementById("start_date").value = selectedDates[0].toLocaleDateString('en-AU');
+      }
+  
+      if(selectedDates[1]){
+        document.getElementById("end_date").value = selectedDates[1].toLocaleDateString('en-AU');
+     }
+    }
+      },
+   });
+
    
-      </script>
+</script>
 <!--<p>
   <strong>Name:</strong>
   <%= @item.name %>

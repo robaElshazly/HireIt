@@ -56,3 +56,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "aws-sdk-s3", "~> 1.89"
 gem 'pagy', '~> 3.7', '>= 3.7.3'
+gem "dotenv-rails", "~> 2.7"

@@ -1,2 +1,11 @@
-<h1>Bookings#new</h1>
-<p>Find me in app/views/bookings/new.html.erb</p>
+<div class="container main-content checkout">
+      <img src="trailer.png">
+      <div>
+        <p><strong>Item: </strong><%=@item.title%></p>
+        <p><strong>Pick up date: </strong><%=params[:start_date]%></p>
+        <p><strong>Return date: </strong><%=params[:end_date]%></p>
+        <p><strong>Pick up from: </strong><%=@item.title%></p>
+        <p><strong>Total price: </strong><%=@item.price*(params[:start_date]-params[:end_date]+1)%></p>
+        <button type="submit" class="btn btn-primary">Go to checkout</button>
+      </div>
+  </div>
