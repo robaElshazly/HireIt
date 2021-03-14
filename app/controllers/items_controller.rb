@@ -115,7 +115,4 @@ class ItemsController < ApplicationController
       params.require(:item).permit(:name, :price, :description, :category_id, :picture)
     end
 
-    # def set_categories
-    #   @categories=Category.all
-    # end
 end
