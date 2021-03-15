@@ -1,7 +1,9 @@
 <div class="card m-2" style="width: 18rem;">
-        <%if item.picture.attached?%>
-        <%=image_tag item.picture ,class: "card-img-top ", alt: "Card image cap"%>
-        <%end%>
+        <div class="embed-responsive embed-responsive-16by9">
+          <%if item.picture.attached?%>
+           <%=image_tag item.picture ,class: "card-img-top embed-responsive-item", alt: "Card image cap"%>
+          <%end%>
+        </div>  
         <div class="card-body">
           <a href="<%=item_path(item.id)%>">
           <h5 class="card-title"><%=item.name%></h5>

@@ -18,11 +18,17 @@ body {
         text-decoration: underline;
     }
 }
+.dropdown-menu  {
+padding: .5rem;
+    a {color:#343a40}  
+}
 .flex{
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
   }
+  .embed-responsive .card-img-top {
+    object-fit: cover;}
 .form-content {
     max-width: 600px;
     margin: 0 auto;
@@ -84,7 +90,7 @@ body {
 .left-column {
     width:100%;
     background-color: #fff;
-    height: 700px;
+    min-height: 700px;
     padding:5%;
     
 }
@@ -129,8 +135,6 @@ body {
     margin-top: 30px;
     padding-top:5%;
     padding-bottom:5%;
-    padding-right:4%;
-    padding-left:4%;
     background-color: #fff;
 }        
 
@@ -147,7 +151,7 @@ color:chocolate;
     margin-left: 1.5rem;
 }
 .checkout>div{
-    margin: 1.5rem;
+    margin-left: 1.5rem;
 }
 @media (min-width: 1024px)
 { .left-column {

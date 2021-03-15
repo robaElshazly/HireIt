@@ -20,9 +20,16 @@
           <p>Details</p>
         </strong>
         <p><%=@item.description%></p>
-        <%if @item.user.address%>
-          <p class="card-text"><small class="text-muted"><%=@item.user.address.suburb%>,<%=@item.user.address.state%></small></p>
-        <%end%>
+        <p class="card-text"><small class="text-muted"><%=@item.pickup_address.suburb%>,<%=@item.pickup_address.state%></small></p>        
+        <iframe
+          width="600"
+          height="450"
+          style="border:0"
+          loading="lazy"
+          allowfullscreen
+          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAGILIV3ypV3pPMkmPmijmMEVI1dO2J0gE
+            &q=<%=@item.pickup_address.address%>+<%=@item.pickup_address.suburb%>,<%=@item.pickup_address.state%>+Australia">
+        </iframe>
       </div>
     </div>
     <div class="right-column">
