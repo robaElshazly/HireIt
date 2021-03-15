@@ -1,6 +1,8 @@
 class Item < ApplicationRecord
   belongs_to :user
   belongs_to :category
+  belongs_to :pickup_address
+  accepts_nested_attributes_for :pickup_address
   has_one_attached :picture
   has_many :bookings
   validates_presence_of :name, :price 

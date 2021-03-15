@@ -25,13 +25,8 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    if current_user.address.not_empty?
-       @item = Item.new
-    else
-       respond_to do |format|
-        format.html { redirect_to edit_user_registration_path, alert: "Please , complete all address details before listing an item"}
-       end
-    end  
+    @item = Item.new
+    @item.build_pickup_address
   end
 
   # GET /items/1/edit
@@ -47,17 +42,23 @@ class ItemsController < ApplicationController
 
   # POST /items or /items.json
   def create
-    @item = Item.new(item_params.merge(user: current_user))
+    
+    address = PickupAddress.find_by(item_params[:pickup_address_attributes])
+    #check if address already exists ,if not , create a new address
+    address=address||PickupAddress.create(item_params[:pickup_address_attributes])
 
+    item_address_parameters={name:item_params[:name], price: item_params[:price], description: item_params[:description], category_id: item_params[:category_id],pickup_address: address,user: current_user}
+
+    @item = Item.new(item_address_parameters)
     if @item.save
       flash[:notice] = "Item Created"
       redirect_to my_items_path
-  else
+    else
       flash.now[:alert] = @item.errors.full_messages.to_sentence
       set_categories
       render "new"
-  end
-
+    end
+ @item.picture.attach(item_params[:picture])
     # respond_to do |format|
     #   # if @item.save
     #   #   format.html { redirect_to @item, notice: "Item was successfully created." }
@@ -73,9 +74,17 @@ class ItemsController < ApplicationController
 
   # PATCH/PUT /items/1 or /items/1.json
   def update
+
+    address = PickupAddress.find_by(item_params[:pickup_address_attributes])
+    #check if address already exists ,if not , create a new address
+    address=address||PickupAddress.create(item_params[:pickup_address_attributes])
+
+    item_address_parameters={name:item_params[:name], price: item_params[:price], description: item_params[:description], category_id: item_params[:category_id],pickup_address: address,user: current_user}
+
     respond_to do |format|
       if Item.find_by(id: params[:id],user_id: current_user.id)   #authorizing editing only for owners
-        if @item.update(item_params)
+        if @item.update(item_address_parameters)
+          @item.picture.attach(item_params[:picture]) if item_params.has_key?(:picture)
           format.html { redirect_to @item, notice: "Item was successfully updated." }
           format.json { render :show, status: :ok, location: @item }
         else
@@ -112,7 +121,7 @@ class ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:name, :price, :description, :category_id, :picture)
+      params.require(:item).permit(:name, :price, :description, :category_id, :picture, pickup_address_attributes: [:address,:suburb,:postcode,:state])
     end
 
 end

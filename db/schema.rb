@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_12_080746) do
+ActiveRecord::Schema.define(version: 2021_03_15_022657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,8 +79,19 @@ ActiveRecord::Schema.define(version: 2021_03_12_080746) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "category_id", null: false
+    t.bigint "pickup_address_id", null: false
     t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["pickup_address_id"], name: "index_items_on_pickup_address_id"
     t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "pickup_addresses", force: :cascade do |t|
+    t.string "address"
+    t.string "suburb"
+    t.integer "postcode"
+    t.string "state"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -101,5 +112,6 @@ ActiveRecord::Schema.define(version: 2021_03_12_080746) do
   add_foreign_key "addresses", "users"
   add_foreign_key "bookings", "items"
   add_foreign_key "items", "categories"
+  add_foreign_key "items", "pickup_addresses"
   add_foreign_key "items", "users"
 end

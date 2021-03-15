@@ -25,11 +25,10 @@ class BookingsController < ApplicationController
         line_items: [
           {
             name: @item.name,
-            description: @item.description,
             images: [@item.picture],
             amount: (@item.price*100).to_i,
             currency: 'aud',
-            quantity: params[:end_date].to_i-params[:start_date].to_i+1,
+            quantity: (Date.parse(params[:end_date])-Date.parse(params[:start_date])).to_i+1
           }  
         ],
         payment_intent_data: {metadata: {
