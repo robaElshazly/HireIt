@@ -1,6 +1,6 @@
 <%=render "partials/search"%> 
 <div class="container main-content">
-<div class="card-deck">
+<div class="flex">
  <%@items.order('id desc').each do |item| %>
    <%=render "item-card" , item: item%>   
   <%end%>

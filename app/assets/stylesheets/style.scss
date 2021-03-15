@@ -18,7 +18,11 @@ body {
         text-decoration: underline;
     }
 }
-
+.flex{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
 .form-content {
     max-width: 600px;
     margin: 0 auto;

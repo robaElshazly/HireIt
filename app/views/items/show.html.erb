@@ -32,7 +32,7 @@
   </p>
      <%if  user_signed_in?%>
       <%if current_user.id != @item.user_id  %>
-       <%= render 'booking-form', item: @item%>%
+       <%= render 'booking-form', item: @item%>
       <%end%>
      <% else%> 
         <%= render 'booking-form', item: @item%>
@@ -48,16 +48,20 @@ document.getElementById("unavailable").innerHTML=`${unavailableDates}`
      inline: true,
      mode: 'range',
      minDate: 'today',
+     dateFormat:"Y-m-d H:i",
      disable: unavailableDates,
+     defaultHour:     23,
+    defaultMinute:   59,
+    minuteIncrement: 1,
      onChange: function(selectedDates, dateStr, instance) {
   
      if(selectedDates){
       if(selectedDates[0]){
-        document.getElementById("start_date").value = selectedDates[0].toLocaleDateString('en-AU');
+        document.getElementById("start_date").value = selectedDates[0].toLocaleDateString('fr-ca');
       }
   
       if(selectedDates[1]){
-        document.getElementById("end_date").value = selectedDates[1].toLocaleDateString('en-AU');
+        document.getElementById("end_date").value = selectedDates[1].toLocaleDateString('fr-ca');
      }
     }
       },

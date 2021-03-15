@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card m-2" style="width: 18rem;">
         <%if item.picture.attached?%>
         <%=image_tag item.picture ,class: "card-img-top ", alt: "Card image cap"%>
         <%end%>
@@ -7,7 +7,7 @@
           <h5 class="card-title"><%=item.name%></h5>
           </a>
           <div class="price">
-            <span style="color: chocolate;" ><%=item.price%></span>
+            <span style="color: chocolate;" >$ <%=item.price%></span>
             <span>per day</span>
         </div>
           <p class="card-text hide-overflow"><%=item.description%></p>
