@@ -6,6 +6,8 @@ class Item < ApplicationRecord
   has_one_attached :picture
   has_many :bookings
   validates_presence_of :name, :price 
+  validates_associated :pickup_address
+  
   before_save :remove_whitespace 
   scope :recent_first, -> {order(created_at: :desc)}
   #Search items query

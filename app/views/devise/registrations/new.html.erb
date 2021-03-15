@@ -28,24 +28,7 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password",class:"form-control" %>
   </div>
   
-  <%= f.fields_for :address do |address_form| %>
-        <div class="field form-group">
-        <%= address_form.label :address %><br />
-        <%= address_form.text_field :address,class:"form-control" %>
-        </div>
-        <div class="field form-group">
-        <%= address_form.label :suburb %><br />
-        <%= address_form.text_field :suburb,class:"form-control" %>
-        </div>
-        <div class="field form-group">
-        <%= address_form.label :postcode %><br />
-        <%= address_form.text_field :postcode,class:"form-control" %>
-        </div>
-        <div class="field form-group">
-        <%= address_form.label :state %><br />
-        <%= address_form.text_field :state ,class:"form-control"%>
-        </div>
-    <% end %>
+ 
 
   <div class="form-actions">
     <%= f.submit "Sign up" , class:"btn"%>
