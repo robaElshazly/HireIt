@@ -64,7 +64,7 @@ class BookingsController < ApplicationController
 
   
   def intersect_unavailable_dates  
-    #intersection query (parameters times intersect any of booking times)
+    #intersection query (parameters times intersect any of booking times already exist)
     start_date=Date.parse(params[:start_date])
     end_date=Date.parse(params[:end_date])
     intersection=Booking.where('item_id = ? AND start_date <= ? AND end_date >= ?',params[:item_id], end_date,start_date)
