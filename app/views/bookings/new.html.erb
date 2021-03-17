@@ -3,6 +3,7 @@
 		<%= image_tag @item.picture %>
 	<% end %>
       <div>
+        <h3>Booking Details:</h3>
         <p><strong>Item: </strong><%=@item.name%></p>
         <p><strong>Pick up date: </strong><%=params[:start_date]%></p>
         <p><strong>Return date: </strong><%=params[:end_date]%></p>

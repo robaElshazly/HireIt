@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
   
   def new
     @item=Item.find_by(id: params[:item_id])
+
     if !@item      #ensure item founf from URL exists
       respond_to do |format|
         format.html { redirect_to root_path, alert: "resource not found"}
@@ -57,6 +58,10 @@ class BookingsController < ApplicationController
     customer_user_id=payment.metadata.customer_user_id
     owner_user_id=payment.metadata.owner_user_id
     Booking.create(customer_user_id: customer_user_id,owner_user_id: owner_user_id,item_id: item_id,start_date: start_date,end_date: end_date)
+    
+    user=User.find(owner_user_id)
+    item=Item.find(item_id)
+    UserMailer.with(user: user, item: item).booking_email.deliver_now
     render plain: "success"
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_15_080920) do
+ActiveRecord::Schema.define(version: 2021_03_15_022657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,14 +44,16 @@ ActiveRecord::Schema.define(version: 2021_03_15_080920) do
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.integer "owner_user_id", null: false
-    t.integer "customer_user_id", null: false
+    t.bigint "owner_user_id", null: false
+    t.bigint "customer_user_id", null: false
     t.bigint "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "start_date"
     t.datetime "end_date"
+    t.index ["customer_user_id"], name: "index_bookings_on_customer_user_id"
     t.index ["item_id"], name: "index_bookings_on_item_id"
+    t.index ["owner_user_id"], name: "index_bookings_on_owner_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -99,6 +101,8 @@ ActiveRecord::Schema.define(version: 2021_03_15_080920) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookings", "items"
+  add_foreign_key "bookings", "users", column: "customer_user_id"
+  add_foreign_key "bookings", "users", column: "owner_user_id"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "pickup_addresses"
   add_foreign_key "items", "users"

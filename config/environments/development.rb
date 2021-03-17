@@ -81,4 +81,15 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+
+  config.action_mailer.smtp_settings = {
+    :address   => ENV['MAILER_SMTP'],
+    :port      => ENV['MAILER_PORT'].to_i, # ports 587 and 2525 are also supported with STARTTLS
+    :enable_starttls_auto => true, # detects and uses STARTTLS
+    :user_name => ENV['MAILER_USER_NAME'],
+    :password  => ENV['MAILER_PASSWORD'], # SMTP password is any valid API key
+    :authentication => 'plain', # Mandrill supports 'plain' or 'login'
+  }
+  config.action_mailer.raise_delivery_errors = true
 end
