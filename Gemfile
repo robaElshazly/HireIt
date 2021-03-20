@@ -59,3 +59,5 @@ gem 'pagy', '~> 3.7', '>= 3.7.3'
 gem "dotenv-rails", "~> 2.7"
 
 gem "stripe", "~> 5.30"
+
+gem "cancancan", "~> 3.2"

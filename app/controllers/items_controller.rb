@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show edit update destroy ]
   before_action :set_categories
   before_action :authenticate_user!, except: [:show, :index]
+  load_and_authorize_resource
   # GET /items or /items.json
   def index
     
@@ -30,13 +31,7 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
-    if Item.find_by(id: params[:id],user_id: current_user.id)   #authorizing editing only for owners
-      #load the edit form
-    else
-      respond_to do |format|
-       format.html { redirect_to items_url, alert: "Unauthorized access"}
-      end
-    end 
+ 
   end
 
   # POST /items or /items.json
@@ -57,16 +52,12 @@ class ItemsController < ApplicationController
       set_categories
       render "new"
     end
- @item.picture.attach(item_params[:picture])
+   @item.picture.attach(item_params[:picture])
   end
 
   # PATCH/PUT /items/1 or /items/1.json
   def update
-    
-
-    respond_to do |format|
-      if Item.find_by(id: params[:id],user_id: current_user.id)   #authorizing editing only for owners
-       
+    respond_to do |format|  
         #get the address from db that matches address params
         address = PickupAddress.find_by(item_params[:pickup_address_attributes])
         #check if address already exists ,if not , create a new address
@@ -82,26 +73,16 @@ class ItemsController < ApplicationController
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @item.errors, status: :unprocessable_entity }
         end
-      else
-        respond_to do |format|
-          format.html { redirect_to items_url, alert: "Unauthorized access"}
-        end
-      end
+      
     end
   end
 
   # DELETE /items/1 or /items/1.json
   def destroy
-    if Item.find_by(id: params[:id],user_id: current_user.id)  #authorizing deleting only for owners
        @item.destroy
        respond_to do |format|
-        format.html { redirect_to items_url, notice: "Item was successfully destroyed."}
-      end
-    else  
-      respond_to do |format|
-        format.html { redirect_to items_url, alert: "Unauthorized access"}
+        format.html { redirect_to my_items_url, notice: "Item was successfully destroyed."}
       end  
-    end   
   end
 
   private
