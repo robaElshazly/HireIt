@@ -42,7 +42,7 @@ i2.picture.attach(
 
 #creating items #3
 
-i3=Item.create(name: 'Mavic air drone',price: 20,description: "For hire mavic air drone",user_id: u2.id,category_id: c5.id, pickup_address_id: add2.id)
+i3=Item.create(name: 'Mavic air drone',price: 20,description: "For hire mavic air drone",user_id: u1.id,category_id: c5.id, pickup_address_id: add2.id)
 
 i3.picture.attach(
     io: File.open("app/assets/images/seed/drone.jpg"), 
