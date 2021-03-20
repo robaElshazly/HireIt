@@ -1,9 +1,11 @@
 <%=render "partials/search"%> 
 <div class="container">
- <div class="main-content">
+ <div class="main-content"> 
   <div class="flex">
-    <%@items.order('id desc').each do |item| %>
-      <%=render "item-card" , item: item%>   
+    <%@items.each do |item| %>
+      <a href="<%=item_path(item.id)%>">
+      <%=render "item-card" , item: item%> 
+      </a>  
     <%end%>
   </div>
  </div> 

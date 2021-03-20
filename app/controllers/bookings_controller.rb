@@ -1,9 +1,10 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
+  skip_before_action :verify_authenticity_token, only: [:webhook]
   
   def new
+     #query to get item with id from URL,There only one pickup_address that is not loaded in the query until it's used by the veiw (in case the veiw is rendered)
     @item=Item.find_by(id: params[:item_id])
-
     if !@item      #ensure item founf from URL exists
       respond_to do |format|
         format.html { redirect_to root_path, alert: "resource not found"}
@@ -57,11 +58,11 @@ class BookingsController < ApplicationController
     end_date=payment.metadata.end_date 
     customer_user_id=payment.metadata.customer_user_id
     owner_user_id=payment.metadata.owner_user_id
-    Booking.create(customer_user_id: customer_user_id,owner_user_id: owner_user_id,item_id: item_id,start_date: start_date,end_date: end_date)
+    booking=Booking.create(customer_user_id: customer_user_id,owner_user_id: owner_user_id,item_id: item_id,start_date: start_date,end_date: end_date)
     
-    user=User.find(owner_user_id)
-    item=Item.find(item_id)
-    UserMailer.with(user: user, item: item).booking_email.deliver_now
+    user=User.find(customer_user_id) #find the customer user to send a confirmation email, by customer_user_id coming back from stripe in the metadata
+    item=Item.find(item_id) #find item that the customer paid for by item_id in the metadata of stripe payment session
+    UserMailer.with(user: user, item: item,booking: booking).booking_email.deliver_now
     render plain: "success"
   end
 

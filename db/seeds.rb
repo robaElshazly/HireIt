@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 User.create(name:'Test',email: 'test-user@hireit.com', password: '123456')
-u1=User.create(name:'James',email: 'James@codereats.com', password: '123456')
-u2=User.create(name:'Lina',email: 'Lina@codereats.com', password: '123456')
+u1=User.create(name:'James',email: 'James@hireit.com', password: '123456')
+u2=User.create(name:'Lina',email: 'Lina@hireit.com', password: '123456')
 c1=Category.create(name: 'Home')
 c2=Category.create(name: 'Garden')
 c3=Category.create(name: 'Cleaning')
@@ -74,3 +74,6 @@ i5.picture.attach(
     filename: "table.png", 
     content_type: 'image/png'
 )
+
+
+Booking.create(owner_user_id: 3,customer_user_id: 2,start_date: Date.today,end_date: Date.tomorrow,item_id:3)

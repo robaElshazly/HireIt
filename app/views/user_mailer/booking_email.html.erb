@@ -4,14 +4,13 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Thank you for your booking <%= @item.name %></h1>
-    <p>
-      You have successfully signed up to example.com,
-      your username is: .<br>
-    </p>
-    <p>
-      To login to the site, just follow this link: <%= @url %>.
-    </p>
-    <p>Thanks for joining and have a great day!</p>
-  </body>
+    <h1>Thank you <%=@user.name%> for your booking.</h1>
+    <p>Check your booking details below to find pickup time and address details:</p>
+    <p><strong>Item: </strong><%=@item.name%></p>
+    <p><strong>Pick up date: </strong><%=@booking.start_date.utc.strftime('%m/%d/%Y')%></p>
+    <p><strong>Return date: </strong><%=@booking.end_date.utc.strftime('%m/%d/%Y')%></p>
+    <p><strong>Pick up from: </strong><%=@item.pickup_address.address%>,<%="#{@item.pickup_address.suburb} #{@item.pickup_address.state} #{@item.pickup_address.postcode}"%></p>
+    <p><strong>Price per day: </strong>$<%=@item.price%></p>
+    <p><strong>Period: </strong><%=(@booking.end_date-@booking.start_date).to_i+1%> days</p>
+    <p><strong>Total price: </strong>$<%=@item.price*(@booking.end_date-@booking.start_date+1)%></p>
 </html>

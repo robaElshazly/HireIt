@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   
   before_save :remove_whitespace 
   scope :recent_first, -> {order(created_at: :desc)}
-  #Search items query
+  #Search items query to find all itemsincluding the searched key in there names or description
   def self.search(search_params) 
     return all if search_params.blank?
     where('LOWER(name) LIKE LOWER(?) OR LOWER(description) LIKE LOWER(?)', "%#{search_params}%","%#{search_params}%")

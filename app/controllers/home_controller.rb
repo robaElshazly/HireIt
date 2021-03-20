@@ -6,7 +6,8 @@ class HomeController < ApplicationController
  private
 
  def set_home_items
-    @items=Item.limit(6).order('id desc')
+   #query to get only 6 recent items from db,pickup address was eagerloaded to join the pickup address table so hit the db only once.
+    @items=Item.limit(6).eager_load(:pickup_address).order(created_at: :desc)
  end
 
 #  def set_categories

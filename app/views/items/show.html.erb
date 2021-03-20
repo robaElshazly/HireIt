@@ -1,18 +1,12 @@
 
 <%=render "partials/search"%>
 <div class="container">
-  <%if user_signed_in?%>
-    <%if user_signed_in? && @item.user.id==current_user.id%>
-      <%= link_to 'Edit', edit_item_path(@item) %> |
-      <%=link_to "Delete", item_path(@item), method: :delete, data: { confirm: "Are you sure?"}%>
-    <%end%>
-  <%end%>
   <div class="show-item-div">
     <div class="left-column">
       <%=image_tag @item.picture if @item.picture.attached?%>
       <h3><%=@item.name%></h3>
       <div class="price">
-        <span style="color: chocolate;" ><%=@item.price%></span>
+        <span style="color: chocolate;" >$<%=@item.price%></span>
         <span>per day</span>
       </div>
       <div class="description">
@@ -20,7 +14,7 @@
           <p>Details</p>
         </strong>
         <p><%=@item.description%></p>
-        <p class="card-text"><small class="text-muted"><%=@item.pickup_address.suburb%>,<%=@item.pickup_address.state%></small></p>        
+        <p class="card-text"><small class="text-muted"><i class="fas fa-map-marker"></i> <%=@item.pickup_address.suburb%>,<%=@item.pickup_address.state%></small></p>        
         <iframe
           width="600"
           height="450"
@@ -33,33 +27,36 @@
       </div>
     </div>
     <div class="right-column">
-      <h3><%=@item.user.name%></h3>
-      <p id='unavailable'>
-  
+      <div class="owner_user_name">
+        <i class="fas fa-user-circle"></i>
+        <span ><%=@item.user.name%><span>
+      </div>       
   </p>
      <%if  user_signed_in?%>
-      <%if current_user.id != @item.user_id  %>
-       <%= render 'booking-form', item: @item%>
-      <%end%>
+       <%if current_user.id == @item.user_id  %>
+       <p style="font_size: 1.5rem">Manage your item</p>
+         <i class="far fa-edit"></i><%= link_to 'Edit', edit_item_path(@item) %> |
+         <i class="far fa-trash-alt"></i> <%=link_to "Delete", item_path(@item), method: :delete, data: { confirm: "Are you sure?"}%>
+       <%else%>
+         <%= render 'booking-form', item: @item%>
+       <%end%>
      <% else%> 
         <%= render 'booking-form', item: @item%>
      <%end%>
-    
+    <p id="unavailable"></p>
   </div>
 </div>
 <script>
 const unavailableDates = JSON.parse(document.querySelector('#item-booking-dates').dataset.unavailable)
-document.getElementById("unavailable").innerHTML=`${unavailableDates}`  
+document.getElementById("unavailable").innerHTML=document.querySelector('#item-booking-dates').dataset.unavailable
   flatpickr(".datepicker",
    {
      inline: true,
      mode: 'range',
      minDate: 'today',
-     dateFormat:"Y-m-d H:i",
+     dateFormat:"Y-m-d",
      disable: unavailableDates,
-     defaultHour:     23,
-    defaultMinute:   59,
-    minuteIncrement: 1,
+     
      onChange: function(selectedDates, dateStr, instance) {
   
      if(selectedDates){

@@ -10,7 +10,34 @@ To view source code on GitHub <br/>
 please click [here](https://github.com/robaElshazly/Rails-Market-place) <br/>
 [https://github.com/robaElshazly/Rails-Market-place](https://github.com/robaElshazly/Rails-Market-place)
 
+To veiw trello board<br/>
+please click [here](https://trello.com/b/oVDj2FWS/rubyonrails-market-place)
 <hr>
+
+## Instructions of setup:
+
+* $git clone "this github repo"
+
+* $cd rails-practice-project
+
+* $yarn install --check-files
+
+* $bundle
+
+* $rails db:create
+
+* $rails db:migrate
+
+* $rails db:seed
+
+* $rails s
+
+The testing users credentials are:
+
+### Note : Environment varialbes used from my .ENV, the file is not pushed to this repo, which might cause some services , like AWS for hosting images , to not work properly.
+
+
+
 
 ## Table of Contents
 
@@ -27,7 +54,8 @@ please click [here](https://github.com/robaElshazly/Rails-Market-place) <br/>
 - [High-level components](#high-level-components)
 - [Third party services](#third-party-services)
 - [Active record associations](#active-record-associations)
-- [Database relations and Database schema](#database-relations-and-database-schema)
+- [Database relations](#database-relations)
+- [Database schema](#database-schema)
 - [Ways task were allocated and tracked](#ways-task-were-allocated-and-tracked)
 
 ## Description of the Project
@@ -58,6 +86,25 @@ This app also aims to:<br/>
 ![sitemap](docs/sitemap.png) <br/>
 
 ### Screenshots
+![screenshot](docs/ss1.png)
+
+![screenshot](docs/ss2.png)
+
+![screenshot](docs/ss3.png)
+
+![screenshot](docs/ss4.png)
+
+![screenshot](docs/ss5.png)
+
+![screenshot](docs/ss6.png)
+
+![screenshot](docs/ss7.png)
+
+![screenshot](docs/ss8.png)
+
+![screenshot](docs/ss9.png)
+
+![screenshot](docs/ss10.png)
 
 ### Target audience
 
@@ -67,12 +114,14 @@ The application targets people having equipments and wanting to hire them. And a
 
 The following were used to develop my application:
 - Ruby on Rails
+- JS, CSS, HTML.
 - Bootstrap
 - Heroku
 - Stripe
 - Amazon Web Service (S3)
 - Github
 - Postgresql
+
 ## User Stories
 
 #### As a User I want to be able to:
@@ -84,10 +133,10 @@ The following were used to develop my application:
 - Search items that I nee to hire.
 - see available times for booking.
 - Make bookings and payments through the website and receive a booking confirmation email.
+- If I try to make a booking without being logged in, I'll be dirested to the sign in page.
 - Add an item for hire.
 - view my items for hire.
-- Edit my items for hire.
-- Delete my items for hire.
+- Edit and Delete  my items for hire.
 
 
 ## Wireframes
@@ -145,6 +194,7 @@ The following were used to develop my application:
 ## ERD
 ![ERD](docs/erd.png)
 
+
 ## High-level components
 
 ## Third party services
@@ -157,7 +207,7 @@ The following third-party services were used in the development of this applicat
 | Github | is a Git repository hosting service, but it adds many of its own features. While Git is a command line tool, GitHub provides a Web-based graphical interface. It also provides access control and several collaboration features, such as a wikis and basic task management tools for every project. We used it for version control and project managment. https://github.com/ |
 | Gmail SMTP | a protocol for sending e-mail messages between servers. Most e-mail systems that send mail over the Internet use SMTP to send messages from one server to another. We used its setting for the Rails Active Mailer to be able to send emails. https://google.com|
 | Stripe | is a technology company that builds economic infrastructure for the internet. Businesses of every size—from new startups to public companies—use our software to accept payments and manage their businesses online. We used it to handle the payment. https://stripe.com/au |
-
+|Google Maps Embed API| to place an interactive map in each item show page https://developers.google.com/maps/documentation/embed/get-started#streetview |
 <br/>
 The following Ruby on Rails gems were also used in the application:<br/>
 
@@ -209,6 +259,7 @@ Item model has many to one relationship with the User model, i.e. every item bel
 Also, Item model has many to one relationship with the Category model, i.e. every item belonges to one category and every user has many categories.
 Also, Item model has many to one relationship with the PickupAddress model, i.e. every item belonges to one pickup_address and every pickup_address has many items.
 Also, Item model has one to many relationship with the Booking model, i.e. every item has many bookings ,and every booking belongs to one item.
+Every item has one attachment
 ```ruby
 class Booking < ApplicationRecord
   belongs_to :item
@@ -219,7 +270,21 @@ end
 Booking model has many to one relationship with the Item model, i.e. every booking belongs to one item and every item has many bookings.<br/>
 Also,Booking model has many to one relationship to the User model ,where the user is customer, i.e. every booking belongs to a customer_user.<br/>Also,Booking model has another many to one relationship to the User model ,where the user is owner, i.e. every booking belongs to an owner_user.
 
-## Database relations and Database schema
+## Database-relations
+
+Database relations:
+- One to many relationship between users table and items table through user_id foreign key in items table. i.e. every user has many items and every item belongs to one user.
+- One to many relationship between items table and categories table through category_id in items table. i.e. every category has many items and every item belongs to one category.
+- One to many relationship between pickup_addresses table and items table through pickup_address_id foreign key in items table. i.e. every pickup_address has many items and every item belongs to one pickup_address.
+- One to many relationship between bookings table and items table through item_id foreign key in bookings table. i.e. every item has many bookings and every booking belongs to one item.
+- One to many relationship between useres table and bookings table through customer_user_id foreign key in bookings table.
+- Another One to many relationship between useres table and bookings table through owner_user_id foreign key in bookings table.
+
+The last two points resemble a many to many relationship from the users table to itself through the bookings table. i.e. every user( referring owner_user_id in bookings table) has many users(customer_user) and every user(customer_user) has many users(owner_user).
+ 
+
+## Database schema
+The schema.rb file is a generated file from running rails db:migrate that runs all the migrations that include commands for creating the database tables. the migrate command is when the tables are actually created in the database.  the schema is an emplementation for the ERD.
 
 ```ruby
 ActiveRecord::Schema.define(version: 2021_03_15_080920) do
@@ -227,7 +292,7 @@ ActiveRecord::Schema.define(version: 2021_03_15_080920) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "active_storage_attachments", force: :cascade do |t|   # rails active_storage:install , rails db:migrate
+  create_table "active_storage_attachments", force: :cascade do |t|   # this table is generated by rails active storage to handle the images storage
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -237,7 +302,7 @@ ActiveRecord::Schema.define(version: 2021_03_15_080920) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", force: :cascade do |t|
+  create_table "active_storage_blobs", force: :cascade do |t| # also an active storage table
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -249,45 +314,51 @@ ActiveRecord::Schema.define(version: 2021_03_15_080920) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", force: :cascade do |t|
+  create_table "active_storage_variant_records", force: :cascade do |t|  #active storage tabel
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "bookings", force: :cascade do |t|   #rails g model Booking 
-    t.integer "owner_user_id", null: false # foreign key referring to users table (one to many ralationship)
-    t.integer "customer_user_id", null: false # foreign key referring to users table (one to many ralationship)
-    t.bigint "item_id", null: false   # foreign key referring to items table (one to many ralationship)
+  create_table "bookings", force: :cascade do |t|   #create the bookings table in the database
+   #create the table fields and specify the data types
+    t.integer "owner_user_id", null: false # foreign key referring bookings to users table for owner users,one to many ralationship, every user(as owner i.e. referred by an owner_user_id in bookings) has many bookings)
+    t.integer "customer_user_id", null: false # foreign key referring bookings table to users table for customer users one to many ralationship.every user(as customer i.e. referred by an customer_user_id in bookings) has many bookings)
+    t.bigint "item_id", null: false   # foreign key referring to items table (one to many ralationship),an item can be in many bookings,a booking belong to one item.
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "start_date"    
     t.datetime "end_date"
+    t.index ["customer_user_id"], name: "index_bookings_on_customer_user_id" #bookings table is indexed on foriegn keys to speed up looking for the records by the foreign keys.
     t.index ["item_id"], name: "index_bookings_on_item_id"
+    t.index ["owner_user_id"], name: "index_bookings_on_owner_user_id"
   end
 
-  create_table "categories", force: :cascade do |t|    #rails g model  Category name:string
-    t.string "name"
+  create_table "categories", force: :cascade do |t|    #create the categories tabel in the database
+   #create the table fields and specify the data types
+   t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "items", force: :cascade do |t|   #rails g model  Category name:string price:float description:text user:references category:references pickup_address:references
+  create_table "items", force: :cascade do |t|  #create the items tabel in the database
+    #create the table fields and specify the data types
     t.string "name"
     t.float "price"
     t.text "description"
-    t.bigint "user_id", null: false  #foreign key referring to User model
+    t.bigint "user_id", null: false  #foreign key referring to users table(a user has many items,every item belongs to a user)
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "category_id", null: false     #foreign key
-    t.bigint "pickup_address_id", null: false
-    t.index ["category_id"], name: "index_items_on_category_id"
+    t.bigint "category_id", null: false     #foreign key referring to categories table (a category has many items every item belongs to a category)
+    t.bigint "pickup_address_id", null: false #foreign key referring to pickup_addresses table model(pickup address has many items every item belongs to a pickup address)
+    t.index ["category_id"], name: "index_items_on_category_id" #itemss table is indexed on foriegn keys to speed up looking for the records by the foreign keys.
     t.index ["pickup_address_id"], name: "index_items_on_pickup_address_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
-  create_table "pickup_addresses", force: :cascade do |t|
-    t.string "address"
+  create_table "pickup_addresses", force: :cascade do |t|  #create the pickup address table
+   #create the table fields and specify the data types
+   t.string "address"
     t.string "suburb"
     t.integer "postcode"
     t.string "state"
@@ -295,7 +366,7 @@ ActiveRecord::Schema.define(version: 2021_03_15_080920) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|   #create the users table , the migration resposible for this creation is generated by devise gem.
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -307,15 +378,30 @@ ActiveRecord::Schema.define(version: 2021_03_15_080920) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-
+   
+   # adding the foriegn key constraint to all columns chosen to be a foriegn key
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "bookings", "items"
-  add_foreign_key "items", "categories"
-  add_foreign_key "items", "pickup_addresses"
-  add_foreign_key "items", "users"
+  add_foreign_key "bookings", "items" #column item_id will be a foreign key in bookings tabel referring to items table
+  add_foreign_key "bookings", "users", column: "customer_user_id" #column customer_user_id will be a foreign key in bookings tabel referring to users table
+  add_foreign_key "bookings", "users", column: "owner_user_id" #column owner_user_id will be a foreign key in bookings tabel referring to users table
+  add_foreign_key "items", "categories" #column category_id will be a foreign key in items tabel referring to categories table
+  add_foreign_key "items", "pickup_addresses" #column pickup_address_id will be a foreign key in items table referring to pickup_addresses table
+  add_foreign_key "items", "users" #column user_id will be a foreign key in itemss tabel referring to users table
 end
 ```
+
+## Ways task were allocated and tracked
+
+![trello](docs/market-place-trello-1.png)
+
+![trello](docs/market-place-trello-2.png)
+
+![trello](docs/market-place-trello-3.png)
+
+![trello](docs/market-place-trello-4.png)
+
+![trello](docs/market-place-trello-5.png)
 
 
 

@@ -3,6 +3,9 @@ body {
 }
 
 .alert {color:red}
+.navbar-brand{
+    font-size: 1.5rem;
+}
 .categories {
     background-color: #6c757d;
 }
@@ -26,6 +29,12 @@ padding: .5rem;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    a {
+        color:black
+    }
+    a:hover {
+        text-decoration: none;
+    }
   }
   .embed-responsive .card-img-top {
     object-fit: cover;}
@@ -39,8 +48,30 @@ padding: .5rem;
 }
 
 .banner {
-    height: 310px;
+    height: 330px;
     background-image: url("banner.jpg");
+    background-size:cover;
+    .inner-banner{
+       
+        margin:0 auto;
+        display:flex;
+        justify-content: center;
+        div{
+            margin-right: 3rem;
+            margin-left: 3rem;
+            max-width:370px;
+            font-size: 2.6rem;
+        }
+        .banner-left{
+            color:chocolate;
+            text-align: right;
+        }
+        .banner-right{
+            color:#343a40;
+            text-align: left;
+        }
+
+    }
     
 }
 
@@ -67,14 +98,12 @@ padding: .5rem;
 //     max-width:1140px;
   
 // }
-// .card{
-//     min-width: 273px;
-  
-// }
+
 
 .hide-overflow {
     overflow: hidden;
   text-overflow: ellipsis; 
+  white-space: nowrap;
 }
 
 .show-item-div{
@@ -112,18 +141,27 @@ padding: .5rem;
     background-color: #fff;
     /* height: 300px; */
      padding:1.5%; 
+     .owner_user_name{
+         font-size: 1.75rem;
+         border-bottom: 1px solid #dedcdc;
+         
+     }
+     p {font-size: 1.5rem;}
 } 
 .right-column>h3{
     border-bottom: 1px solid #dedcdc;} 
 
 .booking-form {
-    text-align:center;
+    
+    label{font-size: 1.7rem;
+        margin-bottom: 0px;}
 }    
-.booking-form>label{
-        font-size: 1.2rem;}    
+   
 .flatpickr-calendar.inline {
         max-width: 100%;}
-
+.bookings-table{
+    margin-bottom: 3rem ;
+}
 .btn {
     background-color: chocolate;
     color: white;
@@ -135,8 +173,10 @@ padding: .5rem;
     margin-top: 30px;
     padding-top:5%;
     padding-bottom:5%;
+    padding-right: 8%;
+    padding-left: 8%;
     background-color: #fff;
-}        
+}       
 
 .main-content h3 {
 color:chocolate;

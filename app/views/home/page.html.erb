@@ -1,14 +1,23 @@
 
 <div class="banner">
     <%=render "partials/search"%> 
+    <div class="inner-banner">
+      <div class="banner-left">
+       <b>HIRE<br>WHAT<br> YOU NEED <br>FROM PEOPLE</b>
+      </div>
+      <div class="banner-right">
+      <b>HIRE <br>WHAT <br>YOU <span style="color: chocolate;">DON'T</span> NEED <br>FOR PEOPLE</b>
+      </div>
+    </div>
   </div>
 <h3 class="center-element">Homepage Gallery</h3>
+<div class="container">
  <div class="flex">
- <%@items.each do |item| %>
-
- 
- <%=render "items/item-card" , item: item%>
-    
- <%end%>
+   <%@items.each do |item| %>
+   <a href="<%=item_path(item.id)%>">
+     <%=render "items/item-card" , item: item%> 
+     </a> 
+   <%end%>
  </div>
+</div> 
  <%= link_to "See More...", items_path, class: "center-element"%> 
