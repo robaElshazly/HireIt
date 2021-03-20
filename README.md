@@ -32,7 +32,16 @@ please click [here](https://trello.com/b/oVDj2FWS/rubyonrails-market-place)
 
 * $rails s
 
-The testing users credentials are:
+The testing users credentials are:<br/>
+First user:<br/>
+email: lina@hireit18.com<br/>
+password: 123456
+
+Second user:<br/>
+email: james@hireit18.com<br/>
+password: 123456
+
+
 
 ### Note : Environment varialbes used from my .ENV, the file is not pushed to this repo, which might cause some services , like AWS for hosting images , to not work properly.
 
