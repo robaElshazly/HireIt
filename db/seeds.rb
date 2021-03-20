@@ -5,6 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Item.destroy_all
+User.destroy_all
+Category.destroy_all
+PickupAddress.destroy_all
+
 User.create(name:'Test',email: 'test-user@hireit.com', password: '123456')
 u1=User.create(name:'James',email: 'James@hireit.com', password: '123456')
 u2=User.create(name:'Lina',email: 'Lina@hireit.com', password: '123456')
@@ -76,4 +81,4 @@ i5.picture.attach(
 )
 
 
-Booking.create(owner_user_id: 3,customer_user_id: 2,start_date: Date.today,end_date: Date.tomorrow,item_id:3)
+#Booking.create(owner_user_id: 3,customer_user_id: 2,start_date: Date.today,end_date: Date.tomorrow,item_id:3)

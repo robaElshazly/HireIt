@@ -47,8 +47,7 @@
   </div>
 </div>
 <script>
-const unavailableDates = JSON.parse(document.querySelector('#item-booking-dates').dataset.unavailable)
-document.getElementById("unavailable").innerHTML=document.querySelector('#item-booking-dates').dataset.unavailable
+const unavailableDates = <%=raw @item.unavailable_dates.to_json%>
   flatpickr(".datepicker",
    {
      inline: true,
@@ -61,15 +60,18 @@ document.getElementById("unavailable").innerHTML=document.querySelector('#item-b
   
      if(selectedDates){
       if(selectedDates[0]){
-        document.getElementById("start_date").value = selectedDates[0].toLocaleDateString('fr-ca');
+        console.log(selectedDates);
+        document.getElementById("start_date").value = formatDate(selectedDates[0]);
       }
   
       if(selectedDates[1]){
-        document.getElementById("end_date").value = selectedDates[1].toLocaleDateString('fr-ca');
+        document.getElementById("end_date").value = formatDate(selectedDates[1]);
      }
     }
       },
    });
+
+ const formatDate = (date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
 
    
 </script>

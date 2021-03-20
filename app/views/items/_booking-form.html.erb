@@ -1,4 +1,4 @@
-<div id='item-booking-dates' class="booking-form" data-unavailable="<%= item.unavailable_dates.to_json %>">
+<div id='item-booking-dates' class="booking-form">
         <%=form_with url: new_booking_path, method: :get, local: true do |form|%>
          <p></p>
           <%= form.hidden_field :start_date %>

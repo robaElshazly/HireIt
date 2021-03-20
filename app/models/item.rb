@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   belongs_to :pickup_address
   accepts_nested_attributes_for :pickup_address
   has_one_attached :picture
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
   validates_presence_of :name, :price 
   validates_associated :pickup_address
   
@@ -22,8 +22,9 @@ class Item < ApplicationRecord
   end  
 
   def unavailable_dates
+    Date::DATE_FORMATS[:range_format] = '%Y-%M-%D'
     bookings.pluck(:start_date, :end_date).map do |range|
-      { from: range[0], to: range[1] }
+      { from: range[0].to_formatted_s(:range_format), to: range[1].to_formatted_s(:range_format) }
     end
   end  
 end
