@@ -74,21 +74,23 @@ This is a ruby on rails two ways marketplace app that allow people to hire their
 
 ### Problem definition and purpose
  
-As a lot of people have equipments all year round with minimal use, the advantage of their equipments is minimized. While other people might be in need for these tools but only for minimal use or only for short time. This application was created to connect people connect people having tools with people needing these tools and allows them to hire their tools to each others. <br/>
+This application was created to facilitate hiring your tools for others who need them, and help you maximize the advantage of your equipments. 
+On the other hand it helps you find items you need to hire without having to buy them.
+ <br/>
 This app also aims to:<br/>
 * Maximize the advantage of owned equipments.
-* Getting profit out of our unneeded tools.
-* Help people find tools they need to hire for short time with out needing to buy them.
+* Help Make a profit from unused tools.
+* Help people find tools they need to hire for minimal use without having to purchase them.
 
 ### Functionality and Features
-* Creates users accounts that stores their information.
+* Creates users accounts that store their information.
 * Shows available items for hire without needing to log in.
 * Allows users to list their items for hire after logging in.
 * A booking can be made through the calender that shows only available times. 
-* booking is only for lodded in users.
+* Booking can only be made by logged in users.
 * A payment for booking is done through the website using Stripe.
-* Show items geolocation when displaying an item.
-* Booking confirnmation email.
+* Shows item's geolocation when displaying an item.
+* Booking confirmation email.
 <br/>
 
 ### Sitemap
@@ -118,7 +120,7 @@ This app also aims to:<br/>
 
 ### Target audience
 
-The application targets people having equipments and wanting to hire them. And also people people looking for equipments and tools to hire.
+The application targets people having equipments and wanting to hire them. And also people looking for equipments and tools to hire.
 
 ### Tech Stack
 
@@ -141,11 +143,11 @@ The following were used to develop my application:
 - Delete my account so my data are no longer preserved in the website server.
 - View all items for hire.
 - Search items that I nee to hire.
-- see available times for booking.
+- See available times for booking.
 - Make bookings and payments through the website and receive a booking confirmation email.
 - If I try to make a booking without being logged in, I'll be dirested to the sign in page.
 - Add an item for hire.
-- view my items for hire.
+- View my items for hire.
 - Edit and Delete  my items for hire.
 
 
