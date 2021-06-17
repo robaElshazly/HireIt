@@ -1,6 +1,6 @@
 # T2A2 - Marketplace Project
 
-A Ruby on Rails Project - created by: Roba Elshazly
+A Ruby On Rails Project - created by: Roba Elshazly
 
 To view on Heroku<br/>
 please click [here](https://hireitau.herokuapp.com/) <br/>
@@ -70,7 +70,7 @@ password: 123456
 
 ## Description of the Project
 
-This is a Ruby On Rails two ways marketplace app that enables you to hire your tools and equipments for other people, and also to find tools you need to hire from other people.
+This is a Ruby On Rails two-sided marketplace app that enables you to hire your tools and equipments for other people, and also to find tools you need to hire from other people.
 
 ### Problem definition and purpose
  
