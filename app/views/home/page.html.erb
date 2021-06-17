@@ -14,7 +14,7 @@
 <div class="container">
  <div class="flex">
    <%@items.each do |item| %>
-   <a href="<%=item_path(item.id)%>">
+   <a href="<%=item_path(item.id)%>" >
      <%=render "items/item-card" , item: item%> 
      </a> 
    <%end%>
