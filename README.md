@@ -70,7 +70,7 @@ password: 123456
 
 ## Description of the Project
 
-This is a ruby on rails two ways marketplace app that enables you to hire your tools and equipments for other people, and also to find tools you need to hire from other people.
+This is a Ruby On Rails two ways marketplace app that enables you to hire your tools and equipments for other people, and also to find tools you need to hire from other people.
 
 ### Problem definition and purpose
  
